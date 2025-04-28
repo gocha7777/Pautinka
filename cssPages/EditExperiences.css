@@ -1,0 +1,309 @@
+.experience-block {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 345px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.description {
+    padding-left: 10px;
+}
+
+.description p,
+.description span,
+.description strong {
+    padding: 0;
+}
+
+.description p {
+    padding: 0;
+    margin: 0;
+}
+
+.add-experience-button {
+    margin: 10px auto;
+    width: 345px;
+    height: 43px;
+    background-color: #0500ff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.experience-card {
+    position: relative;
+    background-color: #e2e2e2;
+    border-radius: 12px;
+    padding: 16px;
+    width: 88%;
+    max-width: 360px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+    color: #1a1a1a;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.company-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.label {
+    font-size: 11px;
+    color: #888;
+    display: block;
+}
+
+.sub-block {
+    margin-bottom: 10px;
+}
+
+.sub-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.position {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.duration {
+    font-size: 18px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.company-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+
+/* Switch toggle */
+/* Switch toggle */
+.company-logo .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+}
+
+.company-logo .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.company-logo .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, #d4d4d4, #ffffff);
+    border-radius: 999px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+        inset -2px -2px 4px rgba(255, 255, 255, 0.7),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+        0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.company-logo .slider:before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    top: 3px;
+    background: linear-gradient(145deg, #ffffff, #d1d1d1);
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.2),
+        -1px -1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.company-logo input:checked+.slider {
+    background: linear-gradient(145deg, #5ba8f7, #4095e1);
+    box-shadow:
+        inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+        inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+        0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.company-logo input:checked+.slider:before {
+    transform: translateX(12px);
+    background: linear-gradient(145deg, #e3f0ff, #b4d8ff);
+    box-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.25),
+        -1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Минимальные стили для инпутов */
+input[type="text"],
+input[type="file"],
+textarea {
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    /* Компактный размер шрифта */
+    padding: 8px;
+    margin: 4px 0;
+    /* Уменьшенные отступы */
+    transition: border-color 0.3s ease;
+}
+
+/* Фокус на инпуте */
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #00bcd4;
+    /* Цвет для фокуса */
+}
+
+/* Минимальное оформление кнопки загрузки файла */
+input[type="file"] {
+    display: none;
+    /* Скрытие стандартного инпута для файлов */
+}
+
+
+/* Стили для текста в textarea */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+    /* Меньшая высота для мобильных устройств */
+    font-size: 12px;
+}
+
+/* Кастомный переключатель логотипа */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    /* Уменьшенный размер */
+    height: 16px;
+    /* Уменьшенная высота */
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    /* Меньший размер кружочка */
+    width: 10px;
+    /* Меньший размер кружочка */
+    border-radius: 50%;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+.switch input:checked+.slider {
+    background-color: #00bcd4;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(12px);
+}
+
+
+.add-logo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    /* Белый фон */
+    color: #666;
+    width: 75px;
+    height: 75px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+    outline: none;
+
+    position: absolute;
+    bottom: -84px;
+    right: 10px;
+    z-index: 1;
+}
+
+/* Эффект при наведении на кнопку */
+.add-logo-button:hover {
+    background-color: #f5f5f5;
+    /* Легкий серый фон при наведении */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    /* Легкая тень при наведении */
+}
+
+/* Стили для плюса внутри кнопки */
+.add-logo-button::before {
+    font-size: 20px;
+    /* Размер плюса */
+    font-weight: bold;
+    color: #666;
+    /* Серый цвет для плюса */
+}
+
+.company-logo input[type="file"] {
+    display: none;
+}
+
+.company-logo img {
+    width:100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: contain;
+}

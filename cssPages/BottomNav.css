@@ -1,0 +1,90 @@
+/* src/css/BottomNav.css */
+.bottom-nav {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 0);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 60px;
+    padding: 0 10px env(safe-area-inset-bottom, 10px);
+    box-sizing: border-box;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Остальные стили остаются без изменений */
+.bottom-nav.light {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-nav.dark {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.nav-item .icon {
+    font-size: 24px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.bottom-nav.light .nav-item .icon {
+    color: #fff;
+}
+
+.bottom-nav.dark .nav-item .icon {
+    color: #666;
+}
+
+.nav-item:hover .icon {
+    transform: scale(1.2);
+}
+
+.nav-item.active {
+    background-color: #000;
+}
+
+.nav-item.active .icon {
+    color: #fff;
+}
+
+@media (max-width: 390px) {
+    .bottom-nav {
+        height: 50px;
+    }
+
+    .nav-item {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-item .icon {
+        font-size: 20px;
+    }
+}
+
+.bottom-nav {
+    /* ...существующие стили... */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Когда нужно скрыть */
+.bottom-nav.hidden {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}

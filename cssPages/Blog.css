@@ -1,0 +1,25 @@
+/* src/css/Blog.css */
+.blog-coming-soon {
+    background-color: #ffffff;
+    font-size: 32px;
+    border-radius: 16px;
+    padding: 20px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 10px;
+}
+
+.light .blog-coming-soon {
+    background-color: #ffffff;
+
+    color: #000000;
+}
+
+.dark .blog-coming-soon {
+    background-color: #121212;
+    color: #fff;
+}

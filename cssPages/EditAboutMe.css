@@ -1,0 +1,147 @@
+/* Родительский блок (tags-block) */
+.tags-block {
+    position: relative;
+    /* Это необходимо для позиционирования кнопки внутри блока */
+    background-color: #2a2a2a;
+    width: 371px;
+    height: 200px;
+    border-radius: 16px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+
+.tags-block span {
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.description {
+    font-size: 14px;
+    font-family: Sofia Sans;
+    font-weight: 500;
+    line-height: 19px;
+    padding-left: 10px;
+}
+
+/* Стиль кнопки "Редактировать" с плавным градиентом */
+.edit-button {
+    position: absolute;
+    /* Позиционируем кнопку относительно родительского блока */
+    /* Отступ от верхнего края блока */
+    right: -10px;
+    top: -10px;
+    /* Отступ от правого края блока */
+    width: 25px;
+    /* Диаметр кнопки */
+    height: 25px;
+    /* Диаметр кнопки */
+    border-radius: 50%;
+    /* Круглая форма */
+    background: linear-gradient(135deg, #6a7db3, #9e8cd8);
+    /* Плавный градиент */
+    border: none;
+    /* Без обводки */
+    color: white;
+    /* Цвет иконки */
+    cursor: pointer;
+    /* Курсор при наведении */
+    display: flex;
+    align-items: center;
+    /* Центрируем иконку по вертикали */
+    justify-content: center;
+    /* Центрируем иконку по горизонтали */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    /* Легкая тень */
+    transition: background 0.3s, transform 0.3s;
+    /* Плавные переходы */
+}
+
+
+.edit-button:active {
+    transform: translateY(1px);
+    /* Эффект нажатия */
+}
+
+.edit-button .icon {
+    font-size: 20px;
+    /* Размер иконки */
+}
+
+/* Стиль для блока с описанием */
+.description {
+    font-size: 14px;
+    font-family: Sofia Sans;
+    font-weight: 500;
+    line-height: 19px;
+    padding-left: 10px;
+}
+
+/* Стиль для поля ввода (textarea) */
+.description-input {
+    height: 120px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: Sofia Sans;
+    font-weight: 500;
+    line-height: 19px;
+    border-radius: 10px;
+    /* Округлые углы */
+    border: 2px solid #6a7db3;
+    /* Цвет рамки по умолчанию */
+    background-color: #2a2a2a;
+    /* Темный фон */
+    color: #ffffff;
+    /* Белый текст */
+    transition: all 0.3s ease;
+    /* Плавные переходы */
+    resize: vertical;
+
+}
+
+/* Эффект при фокусе на textarea */
+.description-input:focus {
+    border-color: #9e8cd8;
+    /* Изменение цвета рамки при фокусе */
+    background-color: #333;
+    /* Тёмный фон при фокусе */
+    outline: none;
+    /* Убираем стандартную обводку */
+    box-shadow: 0 0 10px rgba(158, 140, 216, 0.5);
+    /* Легкая тень при фокусе */
+}
+
+/* Стилизация скроллбара для textarea */
+.description-input::-webkit-scrollbar {
+    width: 8px;
+    /* Ширина скроллбара */
+}
+
+.description-input::-webkit-scrollbar-track {
+    background: #1f1f1f;
+    /* Цвет фона скроллбар-трека */
+    border-radius: 8px;
+    /* Округление углов трека */
+}
+
+.description-input::-webkit-scrollbar-thumb {
+    background-color: #555;
+    /* Цвет скроллбар-ползунка */
+    border-radius: 8px;
+    /* Округление углов ползунка */
+    border: 2px solid #1f1f1f;
+    /* Цвет рамки вокруг ползунка */
+}
+
+.description-input::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+    /* Цвет ползунка при наведении */
+}
+
+/* Запрещаем изменение размера textarea только по горизонтали */

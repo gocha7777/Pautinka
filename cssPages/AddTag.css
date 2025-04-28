@@ -1,0 +1,288 @@
+/* AddTag.css */
+
+.add-tag-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1rem;
+    color: white;
+    position: relative;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.add-tag-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1.5rem;
+}
+
+.add-tag-input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    color: white;
+}
+
+.add-tag-dropdown {
+    background-color: #111827;
+    border: 1px solid #374151;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    max-height: 10rem;
+    overflow-y: auto;
+}
+
+.add-tag-dropdown div {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.add-tag-dropdown div:hover {
+    background-color: #374151;
+}
+
+.selected-tags {
+    margin-top: 1rem;
+}
+
+.selected-tags-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 373px;
+    height: auto;
+    margin: 10px 0;
+}
+
+.tag-item {
+    background-color: #374151;
+    border-radius: 9999px;
+    padding: 0.25rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-remove {
+    color: #f87171;
+    cursor: pointer;
+}
+
+.tag-remove:hover {
+    color: #ef4444;
+}
+
+.save-button {
+    margin-top: 2rem;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.save-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* 📱 Адаптивность */
+@media (max-width: 640px) {
+    .add-tag-title {
+        font-size: 1.25rem;
+        margin-top: 3rem;
+    }
+
+    .back-button {
+        font-size: 1.25rem;
+    }
+
+    .save-button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Стили для кнопки "Редактирование профиля" */
+.back-to-profile-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #4a90e2;
+    display: flex;
+    align-items: center;
+}
+
+.back-to-profile-button span {
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+.autocomplete-container {
+    background-color: #2a2a2a;
+    width: 161.13px;
+    height: 62px;
+    border-radius: 12px;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+}
+
+.tags-search-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.search-tag-input {
+    width: 90%;
+    height: 8px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+
+.tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2a2a2a;
+    padding: 6px 12px;
+    height: 12px;
+    border-radius: 12px;
+    color: #fff;
+    transition: background 0.2s ease;
+}
+
+.tag:hover {
+    background: #333;
+    cursor: pointer;
+}
+
+.remove-tag {
+    background: transparent;
+    border: none;
+    color: #4b5563;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.remove-tag:hover {
+    transform: scale(1.15);
+    background-color: rgba(136, 136, 136, 0.1);
+
+}
+
+.tags-block {
+    background-color: #2a2a2a;
+    width: 371px;
+    height: auto;
+    border-radius: 16px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+
+.available-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.available-tag {
+    padding: 6px 10px;
+    background-color: #1e1e1e;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+}
+
+.available-tag:hover {
+    background-color: #333;
+    border-color: #666;
+    transform: scale(1.05);
+}
+
+.available-tags-list {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Стилизация скроллбара */
+.available-tags-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.available-tags-list::-webkit-scrollbar-track {
+    background: #1f1f1f;
+    border-radius: 8px;
+}
+
+.available-tags-list::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 8px;
+    border: 2px solid #1f1f1f;
+}
+
+.available-tags-list::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+body.dark .tags-block, body.dark .available-tags-list , body.dark .search-tag-input, body.dark .description-input {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+body.light .available-tags-list, body.light .tags-block , body.light .search-tag-input, body.light .tag, body.light .description-input {
+    background-color: #f0f0f0;
+    color: black;
+}
+body.dark .available-tag{
+    background-color: #1e1e1e;
+    color: #fff;
+}
+body.light .available-tag{
+    background-color: #ffffff;
+    color: black;
+}

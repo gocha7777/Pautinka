@@ -1,0 +1,98 @@
+body.light .tags-block {
+    background-color: #efefef;
+    color: black;
+}
+
+.tags-block {
+    background-color: #2a2a2a;
+    width: 371px;
+    height: auto;
+    border-radius: 16px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.status p {
+    font-size: 13px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 0;
+    color: #6d6d6d;
+    padding: 10px 16px;
+}
+
+.long-status {
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 345px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.short-status {
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #e1e1e1;
+    width: 96%;
+    height: auto;
+    border-radius: 8px;
+
+}
+
+/* Для списка */
+.long-status ul {
+    list-style-type: disc;
+    /* Стандартные точки */
+    padding-left: 20px;
+    /* Отступ слева */
+    margin-bottom: 10px;
+    margin-top: 8px;
+    margin-left: 14px;
+}
+
+/* Для элементов списка */
+.long-status ul li {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.4;
+}
+
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    /* Запрещаем изменение размера */
+    box-sizing: border-box;
+    /* Учитываем паддинги в общей ширине */
+    background-color: #fff;
+}
+
+.short-status span{
+    padding-left: 16px;
+    padding-bottom: 8px;
+}

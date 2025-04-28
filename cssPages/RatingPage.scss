@@ -1,0 +1,105 @@
+.rating-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.rating-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 16px;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.star {
+    font-size: 32px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.star.selected {
+    color: #f5b301;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
+.feedback-input {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: none;
+}
+
+.feedback-input:focus {
+    outline: none;
+    border-color: #00bcd4;
+}
+
+.submit-btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #1d4ed8;
+    }
+}
+
+.thank-you-message {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thank-you-message h2 {
+    font-size: 24px;
+    color: #333333;
+}
+
+.thank-you-message p {
+    font-size: 16px;
+    color: #555555;
+    margin: 8px 0;
+}
