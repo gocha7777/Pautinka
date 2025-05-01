@@ -1,44 +1,50 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import TagsList from '../Profile/TagsList';
 import { useProfile } from '../../context/ProfileContext';
 import '../../cssPages/Posts.scss';
 import TeamList from '../PostsPage/TeamList';
 import JobButton from '../PostsPage/JobButton';
-import { useNavigate } from 'react-router-dom';
 
 const ScrollToTop = ({ project, onExpandChange }) => {
     const panelRef = useRef(null);
     const [isExpanded, setIsExpanded] = useState(false);
     const { profileData } = useProfile();
-    const navigate = useNavigate();
+    const touchStartY = useRef(0);
+    const touchEndY = useRef(0);
 
-    const handleDragEnd = (event, info) => {
-        const offset = info.offset.y;
+    const handleTouchStart = (event) => {
+        touchStartY.current = event.touches[0].clientY;
+    };
 
-        if (!isExpanded && offset < -100) {
+    const handleTouchMove = (event) => {
+        touchEndY.current = event.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+        const diffY = touchStartY.current - touchEndY.current;
+
+        if (diffY > 50 && !isExpanded) {
+            // Если тянем вверх и окно закрыто
             setIsExpanded(true);
             onExpandChange(true);
-        } else if (isExpanded && offset > 100) {
+        } else if (diffY < -50 && isExpanded) {
+            // Если тянем вниз и окно открыто
             setIsExpanded(false);
             onExpandChange(false);
         }
     };
 
     return (
-        <motion.div
+        <div
             ref={panelRef}
-            className="info-slide-panel"
-            initial={false}
-            animate={{ y: isExpanded ? 0 : '80%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            drag="y"
-            dragConstraints={{ top: 0, bottom: 0 }}
-            onDragEnd={handleDragEnd}
+            className={`info-slide-panel ${isExpanded ? 'expanded' : 'collapsed'}`}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
             <div className="drag-bar" />
 
-            <div className="content">
+            <div className="content-modal">
                 {isExpanded ? (
                     <div className="modal-inner-scrollable">
                         <div className="sticky-header">
@@ -57,29 +63,20 @@ const ScrollToTop = ({ project, onExpandChange }) => {
 
                         <div className="section">
                             <h3>Вакансии</h3>
-                            <JobButton
-                                title="Junior product manager"
-                                subtitle="go 1 ago"
-                            />
-                            <JobButton
-                                title="Junior product manager"
-                                subtitle="go 1 ago"
-                            />
-                            <JobButton
-                                title="Junior product manager"
-                                subtitle="go 1 ago"
-                            />
+                            <JobButton title="Senior Software Engineer" subtitle="2 years ago" />
+                            <JobButton title="UI/UX Designer" subtitle="6 months ago" />
+                            <JobButton title="Data Scientist" subtitle="1 year ago" />
+                            <JobButton title="Digital Marketing Specialist" subtitle="3 months ago" />
+                            <JobButton title="DevOps Engineer" subtitle="4 years ago" />
                         </div>
                     </div>
                 ) : (
                     <div className={`modal-content-wrapper ${!isExpanded ? 'collapsed' : 'expanded'}`}>
-                        <div className="description-text">
-                            {project?.description}
-                        </div>
+                        <div className="description-text">{project?.description}</div>
                     </div>
                 )}
             </div>
-        </motion.div>
+        </div>
     );
 };
 

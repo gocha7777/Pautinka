@@ -35,8 +35,8 @@ const AddLink = () => {
     return (
         <div className="add-link-container">
             <div className="add-link-card">
-                <button onClick={() => navigate(-1)} className="back-to-profile-button">
-                    <h3>➔ Редактирование профиля</h3>
+                <button onClick={() => window.history.back()} className="back-to-profile-button">
+                    <h3> ← Редактирование профиля</h3>
                 </button>
 
                 <AvatarSection avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png" name={profileData.name} />

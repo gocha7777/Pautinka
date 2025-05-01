@@ -40,8 +40,8 @@ const EditAboutMe = () => {
     return (
         <div className="about-container">
             <div className="about-card">
-                <button onClick={() => window.history.back()} className="back-button">
-                    <h3>➔ Редактирование профиля</h3>
+                <button onClick={() => window.history.back()} className="back-to-profile-button">
+                    <h3> ← Редактирование профиля</h3>
                 </button>
 
                 <AvatarSection avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png" name={name} />

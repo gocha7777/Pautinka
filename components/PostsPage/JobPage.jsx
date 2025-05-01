@@ -7,14 +7,14 @@ const JobPage = () => {
   return (
     <div className="job-page">
       <div className="job-header">
-        <button className="back-button" onClick={() => navigate('/posts')}>
+        <button className="back-button" onClick={() => window.history.back()}>
           ←
         </button>
         <h1 className="job-title">Вакансия</h1>
       </div>
       <div className="job-title-container">
         <p className="job-title-label">Название вакансии</p>
-        <h1 className="job-title">Project manager</h1>
+        <h1 className="job-title">Data Scientist</h1>
       </div>
       <div className="job-content">
         <div className="job-meta-container">

@@ -16,24 +16,19 @@ import InfoField from '../Profile/InfoField';
 
 const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
-    const { theme, setTheme } = useTheme();
+    // const { theme, setTheme } = useTheme();
     const navigate = useNavigate();
     const { profileData } = useProfile();
 
-    const toggleTheme = () => {
-        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-    };
+    // const toggleTheme = () => {
+    //     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    // };
 
     return (
-        <div className={`profile-container ${theme}`}>
+        <div className={`profile-container`}>
             <div className="profile-card">
-                <div className="theme-toggle-wrapper">
-                    <button className="theme-toggle" onClick={toggleTheme}>
-                        {theme === 'dark' ? '🌞 Светлая тема' : '🌙 Тёмная тема'}
-                    </button>
-                </div>
 
-                <AvatarSection avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png" />
+                <AvatarSection avatarUrl="foto\foto-profile.png" />
 
                 <button className="toggle-edit" onClick={() => setIsEditing(!isEditing)}>
                     {isEditing ? 'Сохранить' : 'Редактировать профиль'}

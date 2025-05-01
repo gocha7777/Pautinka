@@ -27,16 +27,16 @@ const BottomNav = () => {
     return (
         <div className={`bottom-nav ${theme} ${hidden ? 'hidden' : ''}`}>
             <NavLink to="/messages" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-                <FaEnvelope className="icon" />
+                <img src='foto/nav/card.png' className="icon" />
             </NavLink>
             <NavLink to="/followers" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-                <FaUsers className="icon" />
+                <img src='foto/nav/user-group.png' className="icon" />
             </NavLink>
             <NavLink to="/posts" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-                <FaPen className="icon" />
+                <img src='foto/nav/pencil.png' className="icon" />
             </NavLink>
-            <NavLink to="/profile" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-                <FaUser className="icon" />
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
+                <img src='foto/nav/user-circle.png' className="icon" />
             </NavLink>
         </div>
     );

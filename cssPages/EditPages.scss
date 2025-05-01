@@ -2,17 +2,19 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    max-width: 420px;
 }
 
 .add-tag-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 24px;
+    padding: 20px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
 
     @media (max-width: 480px) {
         padding: 16px;
@@ -69,10 +71,6 @@
 
 .add-tag-block {
     height: auto;
-    background: #f7f7f7; // Светло-серый фон блока
-    border-radius: 20px; // Скругленные углы блока
-    padding: 16px; // Внутренние отступы
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); // Тень для блока
 
     .add-tag-input-container {
         display: flex;
@@ -198,7 +196,6 @@
     max-width: 400px;
     margin: 0 auto;
     // padding: 1rem;
-    font-family: 'Sofia Sans', Arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -218,7 +215,6 @@
 
 /* Back button at the top */
 .back-button {
-    padding-top: 20px;
     align-self: flex-start;
     background: transparent;
     border: none;
@@ -227,65 +223,78 @@
 }
 
 /* Block for individual status items */
-.status-block {
+.status-card {
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    // padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    // margin: 12px;
-    width: 96%;
+    align-items: center;
 
-    h3 {
-        margin: 0;
-        padding: 8px 0px 0 12px;
-    }
-
-    .status-item {
-        width: 90%;
-        background: #f0f0f0;
-        border-radius: 16px;
-        padding: 16px;
+    .status-block {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        position: relative;
+        gap: 20px;
+        // margin: 12px;
+        width: 96%;
 
-        &.short-status,
-        &.long-status {
-            .status-input {
-                width: 100%;
-                font-size: 16px;
-                font-weight: bold;
-                border: none;
-                background: transparent;
-                outline: none;
-                padding: 4px 0;
-                resize: none;
-            }
+        h3 {
+            margin: 0;
+            padding: 8px 0px 0 12px;
+        }
 
-            .status-label {
-                font-size: 14px;
-                color: #888;
-                text-decoration: underline;
-            }
+        .status-item {
+            width: 90%;
+            background: #f0f0f0;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
 
-            .edit-status-button {
-                position: absolute;
-                top: 8px;
-                right: -8px;
-                transform: translateY(-50%);
-                width: 32px;
-                height: 32px;
-                background-color: #2563eb;
-                color: white;
-                border: none;
-                border-radius: 50%;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                transition: background-color 0.3s ease, transform 0.2s ease;
+            &.short-status,
+            &.long-status {
+                .status-input {
+                    width: 100%;
+                    font-size: 16px;
+                    font-weight: bold;
+                    border: none;
+                    background: transparent;
+                    outline: none;
+                    padding: 4px 0;
+                    resize: none;
+                }
+
+                .status-label {
+                    font-size: 14px;
+                    color: #888;
+                    text-decoration: underline;
+                }
+
+                .edit-status-button {
+                    position: absolute;
+                    top: 8px;
+                    right: -8px;
+                    transform: translateY(-50%);
+                    width: 32px;
+                    height: 32px;
+                    background-color: #2563eb;
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    transition: background-color 0.3s ease, transform 0.2s ease;
+                }
             }
         }
     }
@@ -379,9 +388,8 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
-    font-family: 'Sofia Sans', Arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -396,6 +404,8 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Кнопка "Назад" */
@@ -410,12 +420,11 @@
 
 /* Блок "Обо мне" */
 .about-block {
-    margin: 10px;
     background: #f0f0f0;
     border-radius: 16px;
     padding: 16px;
     position: relative;
-    width: 94%;
+    width: 100%;
     /* Блок занимает всю ширину контейнера */
     box-sizing: border-box;
     /* Учитываем padding в ширину */
@@ -463,10 +472,8 @@
         /* Минимальная высота */
         max-height: 300px;
         /* Ограничение максимальной высоты */
-        padding: 10px;
         /* Внутренние отступы */
         font-size: 14px;
-        font-family: Sofia Sans;
         font-weight: 500;
         line-height: 1.5;
         border-radius: 10px;
@@ -539,7 +546,6 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    font-family: 'Sofia Sans', Arial, sans-serif;
     box-sizing: border-box;
     background-color: #f9f9f9;
 }
@@ -662,13 +668,14 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    font-family: 'Sofia Sans', Arial, sans-serif;
     box-sizing: border-box;
     background-color: #f9f9f9;
+    max-width: 420px;
 }
 
 .add-link-card {
     height: 100%;
+    width: 100%;
     background: #ffffff;
     border-radius: 16px;
     padding: 20px;
@@ -676,7 +683,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 400px;
     box-sizing: border-box;
 }
 
@@ -798,13 +804,20 @@
 //EditExperiences
 
 .edit-experiences-container {
+    max-width: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
-    background-color: #f9f9f9;
-    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    /* Занимаем всю высоту экрана */
+    padding: 0;
+    /* Убираем отступы внутри */
+    box-sizing: border-box;
+    overflow-y: auto;
+    /* Прокрутка, если контент превышает высоту */
+    background: #f8f9fa;
+    /* Опционально: задайте фон для проверки */
 }
 
 .edit-experiences-card {
@@ -813,8 +826,7 @@
     padding: 20px;
     width: 100%;
     height: 100%;
-
-    max-width: 600px;
+    max-width: 420px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -896,7 +908,6 @@
     background: #f0f4f8;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    gap: 16px;
 }
 
 .experience-logo img {
@@ -998,6 +1009,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 420px;
     width: 100%;
     height: 100vh;
     background-color: #f9f9f9;
@@ -1006,13 +1018,12 @@
 .edit-experience-new-card {
     background: #ffffff;
     border-radius: 12px;
-    padding: 16px;
     width: 100%;
     height: 100%;
-    max-width: 360px;
+    padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    font-family: 'Segoe UI', sans-serif;
     color: #1a1a1a;
+    box-sizing: border-box;
 }
 
 .section-title {

@@ -6,7 +6,7 @@ const ExperienceSection = ({ experience, isEditing, onEditExperience }) => (
         <div className="experience-list">
             {experience.map((item, index) => (
                 <div key={index} className="experience-item">
-                    <img src="https://imgproxy.cdn-tinkoff.ru/zoom_05:compressed95/aHR0cHM6Ly9jZG4udGJhbmsucnUvc3RhdGljL3BhZ2VzL2ZpbGVzLzJlOGI4YWJjLThjYzEtNGMwYi1hOTliLWMyNzg3NWE0OTk5NS5wbmc=" alt="company logo" className="company-icon" />
+                    <img src={item.src} alt="company logo" className="company-icon" />
                     <div className="experience-details">
                         <strong>{item.company}</strong>
                         <p>{item.position}</p>

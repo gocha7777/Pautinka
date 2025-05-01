@@ -5,17 +5,17 @@ const teamMembers = [
     {
         name: 'Анна Шатрова',
         role: 'Ивент-менеджер',
-        image: 'https://cdn-icons-png.flaticon.com/512/74/74105.png',
+        image: 'foto/players/image 7.png',
     },
     {
         name: 'Максим Козин',
         role: 'Маркетолог',
-        image: 'https://cdn-icons-png.flaticon.com/512/74/74105.png',
+        image: 'foto/players/image 8.png',
     },
     {
         name: 'Ксения Минская',
         role: 'Креативный директор',
-        image: 'https://cdn-icons-png.flaticon.com/512/74/74105.png',
+        image: 'foto/players/image 9.png',
     },
 ];
 

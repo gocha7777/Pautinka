@@ -1,6 +1,6 @@
 // src/App.js
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // Остальной код остается без изменений
 import BottomNav from '../components/Buttons/BottomNav';
 import ScrollToTop from '../components/Buttons/ScrollToTop';
@@ -30,14 +30,14 @@ const App = () => {
   return (
     <ThemeProvider>
       <ProfileProvider>
-        <Router>
+        <Router basename="/Pautinka/">
           <div className="app">
             <div className="content">
               <Routes>
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/followers" element={<Followers />} />
                 <Route path="/posts" element={<Posts />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/" element={<Profile />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/profile/add-tag" element={<AddTag />} />
                 <Route path="/profile/edit-about-me" element={<EditAboutMe />} />

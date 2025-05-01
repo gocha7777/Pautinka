@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gocha7777.github.io/Pautinka",
+  "homepage": "https://gocha7777.github.io/Pautinka/",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
@@ -14,6 +14,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "framer-motion": "^12.9.2",
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

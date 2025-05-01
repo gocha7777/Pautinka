@@ -24,7 +24,7 @@ const EditExperienceNew = () => {
                 { ...newExperience, id: Date.now() },
             ],
         }));
-        navigate('/profile/edit-experiences'); // Возврат к списку опыта работы
+        navigate('/profile/edit-experience'); // Возврат к списку опыта работы
     };
 
     const handleLogoUpload = (e) => {
@@ -41,7 +41,7 @@ const EditExperienceNew = () => {
     return (
         <div className="edit-experience-new-container">
             <div className="edit-experience-new-card">
-                <button onClick={() => navigate(-1)} className="back-to-profile-button">
+                <button onClick={() => window.history.back()} className="back-to-profile-button">
                     <h3> ← Редактирование профиля</h3>
                 </button>
                 <AvatarSection

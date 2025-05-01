@@ -4,33 +4,39 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: #f9f9f9;
-    font-family: 'Segoe UI', sans-serif;
+    max-width: 420px;
 }
 
 .search-card {
     background: #ffffff;
     border-radius: 16px;
-    padding: 24px;
     height: 100%;
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-sizing: border-box;
+
 }
 
 .search-header {
-    text-align: center;
-    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    size: 10px;
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
     color: #333333;
-    margin: 0;
+    height: 25px;
+    // margin: 20px 0 0 0;
 }
 
 .search-bar {
@@ -41,6 +47,7 @@
     border-radius: 12px;
     padding: 8px 12px;
     background-color: #f9f9f9;
+
 }
 
 .search-input {
@@ -68,6 +75,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin: 0 auto;
 }
 
 .tag {
@@ -84,4 +92,125 @@
 .tag:hover {
     background-color: #e0e0e0;
     transform: scale(1.05);
+}
+
+
+//user
+.user-card {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    max-width: 600px;
+    margin: 10px auto;
+
+    @media (max-width: 768px) {
+        padding: 8px 10px;
+        /* Уменьшаем отступы */
+        max-width: 100%;
+        /* Занимаем всю ширину экрана */
+    }
+}
+
+.user-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+        width: 50px;
+        /* Уменьшаем размер фото */
+        height: 50px;
+    }
+}
+
+.user-info {
+    flex-grow: 1;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        /* Уменьшаем общий размер текста */
+    }
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        /* Уменьшаем шрифт для имени */
+    }
+}
+
+.user-role {
+    font-size: 12px;
+    color: #777;
+    margin: 5px 0 0 0;
+
+    @media (max-width: 768px) {
+        font-size: 11px;
+        /* Уменьшаем шрифт для роли */
+    }
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+        gap: 5px;
+        /* Уменьшаем расстояние между кнопками */
+    }
+}
+
+.subscribe-btn {
+    background-color: #0500ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+
+    @media (max-width: 768px) {
+        font-size: 11px;
+        /* Уменьшаем шрифт для кнопок */
+        padding: 5px 8px;
+        /* Уменьшаем отступы у кнопок */
+    }
+}
+
+.subscribe-btn:hover {
+    background-color: #0000d6;
+}
+
+.message-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+
+    @media (max-width: 768px) {
+        font-size: 11px;
+        /* Уменьшаем шрифт для кнопок */
+        padding: 5px 8px;
+        /* Уменьшаем отступы у кнопок */
+    }
+}
+
+.message-btn:hover {
+    background-color: #d40000;
 }

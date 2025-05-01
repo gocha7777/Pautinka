@@ -1,12 +1,12 @@
 /* src/css/BottomNav.css */
 .bottom-nav {
     position: fixed;
-    bottom: env(safe-area-inset-bottom, 0);
+    bottom: calc(env(safe-area-inset-bottom, 0) + 5px);
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 480px;
-    height: 60px;
+    max-width: 420px;
+    height: 50px;
     padding: 0 10px env(safe-area-inset-bottom, 10px);
     box-sizing: border-box;
     border-radius: 30px;
@@ -18,7 +18,7 @@
 
 /* Остальные стили остаются без изменений */
 .bottom-nav.light {
-    background-color: #1a1a1a;
+    background-color: #000000;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -31,20 +31,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     transition: background-color 0.3s;
 }
 
 .nav-item .icon {
-    font-size: 24px;
+    font-size: 20px;
     transition: color 0.3s, transform 0.2s;
+    color: #000;
+
 }
 
+/* 
 .bottom-nav.light .nav-item .icon {
     color: #fff;
-}
+} */
 
 .bottom-nav.dark .nav-item .icon {
     color: #666;
@@ -55,11 +58,14 @@
 }
 
 .nav-item.active {
-    background-color: #000;
+    background-color: #000000;
+    /* Фон становится белым */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-item.active .icon {
-    color: #fff;
+    color: #ffffff;
+    /* Иконка становится черной */
 }
 
 @media (max-width: 390px) {

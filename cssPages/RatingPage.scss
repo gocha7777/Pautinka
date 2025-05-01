@@ -4,8 +4,8 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
+    max-width: 420px;
     background-color: #f9f9f9;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 .rating-card {
@@ -15,7 +15,6 @@
     flex-direction: column;
     background: #ffffff;
     border-radius: 12px;
-    padding: 24px;
     height: 100%;
     width: 100%;
     max-width: 500px;
@@ -53,12 +52,14 @@ h1 {
 }
 
 .feedback-input {
+    max-width: 390px;
     width: 100%;
     height: 100px;
     margin-bottom: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
+    padding: 10px;
     resize: none;
 }
 

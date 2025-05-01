@@ -1,128 +1,82 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useProfile } from '../../context/ProfileContext';
 import AvatarSection from '../Profile/AvatarSection';
-import '../../cssPages/EditPages.scss'; // Обновленные стили
+import { CommonButton } from '../Buttons/ActionButtons';
+import useProfileEditor from '../../hooks/useProfileEditor';
+import '../../cssPages/EditPages.scss';
 
-const EditExperienceNew = () => {
+const EditStatus = () => {
     const { profileData, setProfileData } = useProfile();
-    const navigate = useNavigate();
 
-    const [newExperience, setNewExperience] = useState({
-        company: '',
-        department: '',
-        position: '',
-        duration: '',
-        logo: '', // URL логотипа
-    });
-
-    const handleSave = () => {
-        setProfileData((prevData) => ({
-            ...prevData,
-            experience: [
-                ...prevData.experience,
-                { ...newExperience, id: Date.now() },
-            ],
-        }));
-        navigate('/profile/edit-experiences'); // Возврат к списку опыта работы
-    };
-
-    const handleLogoUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setNewExperience({ ...newExperience, logo: event.target.result });
-            };
-            reader.readAsDataURL(file);
+    const {
+        state: { shortStatus, longStatus },
+        hasChanges,
+        handleInputChange,
+        handleSave,
+        handleCancel,
+    } = useProfileEditor(
+        {
+            shortStatus: profileData.shortStatus || '',
+            longStatus: profileData.longStatus || '',
+        },
+        (updatedState) => {
+            setProfileData((prevData) => ({
+                ...prevData,
+                shortStatus: updatedState.shortStatus,
+                longStatus: updatedState.longStatus,
+            }));
         }
-    };
+    );
 
     return (
-        <div className="edit-experience-new-container">
-            <div className="edit-experience-new-card">
-                <button onClick={() => navigate(-1)} className="back-to-profile-button">
+        <div className="edit-status-container">
+            <div className="status-card">
+                <button onClick={() => window.history.back()} className="back-to-profile-button">
                     <h3> ← Редактирование профиля</h3>
                 </button>
-                <AvatarSection
-                    avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png"
-                    name={profileData.name}
-                />
-                <h3 className="section-title">Опыт работы</h3>
 
-                <div className="form-container">
-                    <div className="form-row name-company">
-                        <label>Название компании</label>
+                <AvatarSection avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png" name={profileData.name} />
+                <div className="status-block">
+                    {/* Short Status */}
+                    <h3>Статус</h3>
+                    <div className="status-item short-status">
+                        <label className="status-label">Краткий статус</label>
                         <input
                             type="text"
-                            className="form-input"
-                            value={newExperience.company}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, company: e.target.value })
-                            }
+                            name="shortStatus"
+                            value={shortStatus}
+                            onChange={handleInputChange}
+                            className="status-input"
+                            placeholder="Введите ваш статус"
                         />
-                    </div>
-                    <div className="form-row">
-                        <label>Подразделение</label>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={newExperience.department}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, department: e.target.value })
-                            }
-                        />
-                    </div>
-                    <div className="form-row">
-                        <label>Должность</label>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={newExperience.position}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, position: e.target.value })
-                            }
-                        />
-                    </div>
-                    <div className="form-row">
-                        <label>Длительность работы</label>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={newExperience.duration}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, duration: e.target.value })
-                            }
-                        />
+                        <button className="edit-status-button">
+                            ✎
+                        </button>
                     </div>
 
-                    <div className="form-row logo-row">
-                        <label>Логотип компании</label>
-                        <div className="logo-upload-container">
-                            {newExperience.logo ? (
-                                <div className="uploaded-logo">
-                                    <img src={newExperience.logo} alt="Логотип компании" />
-                                </div>
-                            ) : (
-                                <label className="add-logo-button">
-                                    +
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleLogoUpload}
-                                    />
-                                </label>
-                            )}
-                        </div>
+                    {/* Long Status */}
+                    <div className="status-item long-status">
+                        <label className="status-label">Опишите что вы делаете</label>
+                        <textarea
+                            name="longStatus"
+                            value={longStatus}
+                            onChange={handleInputChange}
+                            className="status-input"
+                            placeholder="Опишите вашу деятельность"
+                        />
+                        <button className="edit-status-button">
+                            ✎
+                        </button>
                     </div>
                 </div>
-
-                <button onClick={handleSave} className="save-btn">
-                    Сохранить
-                </button>
+                {hasChanges && (
+                    <div className="button-group">
+                        <CommonButton onClick={handleSave} className="save-button">Сохранить</CommonButton>
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
-export default EditExperienceNew;
+export default EditStatus;

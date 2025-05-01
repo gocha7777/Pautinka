@@ -14,7 +14,6 @@ $primary-color: #0500ff;
 $secondary-color: #2a2a2a;
 $light-background: #f5f5f5;
 $dark-background: #121212;
-$font-family: 'Arial', sans-serif;
 $highlight-color: #4c4c4c;
 
 // Mixins
@@ -38,12 +37,22 @@ $highlight-color: #4c4c4c;
 // General styles
 html,
 body {
-  overflow-x: hidden;
+  margin: 0;
+  /* Убираем внешние отступы */
+  padding: 0;
+  /* Убираем внутренние отступы */
+  overflow: auto;
+  /* Опционально: убираем скролл, если не нужен */
+  font-family: 'Sofia Sans', sans-serif;
+}
+
+* {
+  font-family: inherit;
+  /* Наследуем шрифт для всех элементов */
 }
 
 body {
   background-color: $dark-background;
-  font-family: $font-family;
   margin: 0;
   color: $light-background;
 }
@@ -112,19 +121,21 @@ body.light .blog-box {
 .profile-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  max-width: 420px;
+  box-sizing: border-box;
 }
 
 .profile-card {
   background-color: $secondary-color;
   border-radius: 16px;
   padding: 20px;
-  max-width: 420px;
-  width: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+
 }
 
 .avatar-section {
@@ -160,6 +171,7 @@ body.light .blog-box {
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-top: 16px;
 
   .stat-box {
     background-color: lighten($secondary-color, 10%);
@@ -171,10 +183,10 @@ body.light .blog-box {
     position: relative;
 
     .label {
-      font-size: 13px;
-      color: #aaa;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333333;
       margin: 0;
-      text-decoration: underline;
     }
 
     .value {
@@ -193,7 +205,6 @@ body.light .blog-box {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
 
     .info-left,
     .info-right {
@@ -227,7 +238,6 @@ body.light .blog-box {
   flex-direction: column;
   justify-content: center;
   font-size: 14px;
-  font-family: $font-family;
   color: white;
 
   label {
@@ -264,7 +274,6 @@ body.light .blog-box {
 // Description block
 .description {
   font-size: 15px;
-  font-family: Sofia Sans;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 3%;
@@ -338,11 +347,10 @@ body.light .blog-box {
   background-color: $secondary-color;
   padding: 14px;
   border-radius: 12px;
-  @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
+  // @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
 
   span {
     font-size: 12px;
-    font-family: Sofia Sans;
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: 0.5px;
@@ -351,7 +359,6 @@ body.light .blog-box {
 
   .description {
     font-size: 14px;
-    color: #333;
     margin-top: 8px;
     word-wrap: break-word;
     /* Переносить длинные слова */
@@ -386,8 +393,8 @@ body.light .blog-box {
 }
 
 .company-icon {
-  width: 64px;
-  height: 64px;
+  width: 50px;
+  height: 50px;
   padding-left: 8px;
   object-fit: cover;
   border-radius: 8px;
@@ -402,14 +409,12 @@ body.light .blog-box {
 
   strong {
     font-size: 14px;
-    font-family: Sofia Sans;
     font-weight: 900;
     line-height: 19px;
   }
 
   p {
     font-size: 11px;
-    font-family: Sofia Sans;
     font-weight: 600;
     line-height: 19px;
     margin: 0;
@@ -418,7 +423,6 @@ body.light .blog-box {
 
   span {
     font-size: 8px;
-    font-family: Sofia Sans;
     font-weight: 400;
     line-height: 19px;
   }
@@ -438,9 +442,10 @@ body.light .blog-box {
 }
 
 .toggle-edit {
-  margin: 10px auto;
-  width: 379px;
+  margin-top: 16px;
+  width: 100%;
   height: 43px;
+  font-size: 20px;
   @include button-style($primary-color, white);
 }
 
@@ -472,7 +477,6 @@ body.light .blog-box {
     border: 1px solid #6c757d;
     border-radius: 20px;
     padding: 5px 15px;
-    font-family: "Arial", sans-serif;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -543,6 +547,8 @@ body.light .blog-box {
   border-radius: 16px;
   padding: 20px;
   text-align: center;
+  max-width: 420px;
+  box-sizing: border-box;
 }
 
 // Posts Page
@@ -568,22 +574,24 @@ body.light .blog-box {
 
 // Status Block
 .status-block {
+  box-sizing: border-box;
   position: relative;
   background-color: $secondary-color;
   padding: 6px;
   border-radius: 8px;
   white-space: pre-wrap;
-  width: 374px;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  // @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
+  gap: 0;
 
   p {
     font-size: 13px;
-    font-family: Sofia Sans;
     font-weight: 400;
     letter-spacing: 3%;
   }
@@ -591,7 +599,6 @@ body.light .blog-box {
   strong {
     padding-left: 8px;
     text-align: center;
-    font-family: Sofia Sans;
     font-weight: 400;
     color: $primary-color;
   }
@@ -632,16 +639,16 @@ body.light .blog-box {
 // Profile Sections Layout
 .profile-sections-layout {
   display: flex;
-  width: 383px;
+  width: 100%;
   gap: 18px;
   margin-top: 18px;
 }
 
 .profile-sections-left {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 24px;
-  width: 195px;
 }
 
 .profile-sections-right {
@@ -680,7 +687,6 @@ body.light .blog-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 16px;
   }
 
   .avatar-section img {
@@ -693,12 +699,12 @@ body.light .blog-box {
   .stats-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 16px;
+    width: 100%;
+    margin-top: 16px;
   }
 
   .info-grid {
-    display: flex;
-    gap: 12px;
+    width: 100%;
   }
 
   .info-row {
@@ -713,7 +719,6 @@ body.light .blog-box {
   }
 
   .status-block {
-    margin-bottom: 16px;
     border-radius: 8px;
     background: #f9f9f9;
   }
@@ -749,3 +754,181 @@ body.light .blog-box {
     background: #0056b3;
   }
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin: 10px 0;
+
+  .info-box {
+    display: flex;
+    font-size: 20px;
+    width: 100%;
+    padding: 5px 16px;
+  }
+
+}
+
+.about-me {
+  font-size: 14px;
+  line-height: 1;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  position: relative;
+  white-space: pre-wrap;
+  /* Сохраняем переносы строк */
+}
+
+.about-me-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.description p {
+  margin: 5px 0;
+  /* Уменьшаем отступы между абзацами */
+  word-wrap: break-word;
+}
+
+.description a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.description a:hover {
+  text-decoration: underline;
+}
+
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-button .icon {
+  font-size: 16px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+//SlideExperience
+
+.scrollable-experience-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.scrollable-experience {
+  .total-experience {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .experience-cards-wrapper {
+    overflow-x: auto; // Включаем горизонтальный скролл
+    display: flex;
+    padding: 10px 0;
+    max-width: 100%;
+    scrollbar-width: thin; // Для Firefox
+    scrollbar-color: #ccc transparent;
+
+    &::-webkit-scrollbar {
+      height: 8px; // Высота скроллбара
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+
+  .experience-cards {
+    display: flex;
+    gap: 16px; // Расстояние между карточками
+  }
+
+  .experience-card {
+    flex: 0 0 auto; // Фиксированная ширина карточек
+    width: 220px; // Размер карточки
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 16px;
+
+    &:hover {
+      transform: translateY(-5px); // Поднимаем карточку при наведении
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .company-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: contain; // Сохраняем пропорции логотипов
+  }
+
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    .company-name {
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .position {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      text-align: start;
+    }
+
+    .duration {
+      font-size: 12px;
+      color: #999;
+      margin-top: 5px;
+    }
+  }
+}
+
+.user {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+// .tags-list-user {
+//   .tag {
+//     background-color: #0500ff;
+//     color: #fff;
+//     border: 1px #fff;
+//   }
+// }

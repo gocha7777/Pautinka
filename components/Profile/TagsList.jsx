@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TagsList = ({ tags, isEditing, onAddTag }) => (
-    <div className="tags-list">
+    <div className="tags-list tags-list-user">
         {tags.map((tag, index) => (
             <div key={index} className="tag">
                 <span>{tag}</span>

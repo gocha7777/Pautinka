@@ -1,7 +1,6 @@
 // Moved CSS to SCSS format for Posts.scss
 
 .posts-container {
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,6 +15,8 @@
     &-horizontal {
         display: flex;
         overflow: hidden;
+        max-width: 420px;
+        border-radius: 16px;
         width: 100vw;
         height: 100vh;
         position: relative;
@@ -54,9 +55,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        // margin-top: 10%;
         justify-content: center;
         text-align: center;
-        padding: 20px;
         box-sizing: border-box;
         height: 100vh;
         background: #fff;
@@ -69,10 +70,19 @@
         border-bottom: 2px solid #333;
 
         &-horizontal {
-            max-width: 90vw;
+            max-width: 40vw;
             max-height: 60vh;
             object-fit: cover;
             border-radius: 16px;
+        }
+
+        @media (max-width: 600px) {
+            &-horizontal {
+                max-width: 90vw;
+                max-height: 60vh;
+                object-fit: cover;
+                border-radius: 16px;
+            }
         }
     }
 
@@ -90,7 +100,6 @@
             padding: 8px;
 
             h1 {
-                font-family: 'Sofia Sans, SemiBold', Arial, sans-serif;
                 font-weight: 600;
                 margin: 0;
                 padding: 0;
@@ -187,7 +196,7 @@
     transition: color 0.2s;
 }
 
-.post-info-header .close-button:hover {
+.post-info-h .close-button:hover {
     color: #000;
 }
 
@@ -343,14 +352,12 @@
 }
 
 .project-info-favorite {
-    font-family: "sofia-sans,Thin";
     font-size: 14px;
     color: #ff5f6d;
     cursor: pointer;
 }
 
 .project-info-content {
-    font-family: "sofia-sans,light";
     margin: 0 auto;
     width: 94%;
     font-size: 16px;
@@ -542,13 +549,13 @@
 
 // {Скролл кнопка}
 .info-slide-panel {
+    box-sizing: border-box;
     position: absolute;
-    /* bottom: 0; */
-    /* left: 0; */
-    width: 19%;
+    max-width: 400px;
+    padding: 20px;
+    width: 100%;
     height: 100%;
     background: white;
-    padding: 1.5rem;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
     box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
@@ -556,6 +563,22 @@
     flex-direction: column;
     touch-action: none;
     overflow-y: auto;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    transform: translateY(82%);
+    /* Начальное положение */
+    transition: transform 0.3s ease-in-out;
+    /* Плавный переход для transform */
+
+    &.collapsed {
+        transform: translateY(84%);
+        /* Скрытое положение */
+    }
+
+    &.expanded {
+        transform: translateY(0);
+        /* Развёрнутое положение */
+    }
 
     .drag-bar {
         width: 60px;
@@ -565,6 +588,20 @@
         align-self: center;
         margin-bottom: 1rem;
         cursor: grab;
+    }
+
+    .content-modal {
+        height: calc(100% - 20px);
+        width: 100%;
+        // height: 100%;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        text-align: justify;
+        flex-grow: 1;
+        /* Растягиваем содержимое */
+        overflow-y: auto;
+        /* Добавляем прокрутку для контента */
     }
 
     .collapsed-content,
@@ -590,6 +627,7 @@
             flex-grow: 1;
             overflow: hidden;
             position: relative;
+
         }
 
         .modal-inner-scrollable {
@@ -604,7 +642,7 @@
         .sticky-header {
             position: sticky;
             top: 0;
-            background-color: white; // замени на #1e1e1e или другую при тёмной теме
+            background-color: white;
             z-index: 10;
             padding: 12px 0 8px;
             border-bottom: 1px solid #e0e0e0;
@@ -614,6 +652,7 @@
                 font-size: 20px;
             }
         }
+
 
         .section {
             h3 {
@@ -630,23 +669,13 @@
         .modal-content-wrapper {
             position: relative;
             overflow: hidden;
-            font-family: "Segoe UI", Thin;
             font-size: 18px;
+            flex-grow: 1;
+            overflow-y: auto;
 
             &.collapsed .description-text {
                 max-height: 3.5em;
                 overflow: hidden;
-                position: relative;
-            }
-
-            &.collapsed .description-text::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 2em;
-                width: 100%;
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
             }
 
             &.expanded .description-text {
@@ -668,7 +697,7 @@
 
             h3 {
                 font-size: 20px;
-                margin-bottom: 8px;
+                margin: 0;
                 text-align: left;
             }
         }
@@ -829,10 +858,9 @@
 
 
 .job-page {
-    max-width: 600px;
+    max-width: 380px;
     margin: 0 auto;
-    padding: 16px;
-    font-family: Arial, sans-serif;
+    padding: 20px;
     color: #333;
     background-color: #f9f9f9;
 }
@@ -916,7 +944,6 @@
 }
 
 .tags-block-container {
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -985,10 +1012,14 @@
         border-radius: 8px;
         padding: 12px;
 
+
         .search-bar {
             display: flex;
             align-items: center;
             gap: 8px;
+            border: none;
+            margin: 0;
+            padding: 0;
 
             .search-tag-input {
                 flex-grow: 1;
@@ -1172,16 +1203,16 @@
     align-items: center;
     min-height: 100vh;
     width: 100%;
+    max-width: 420px;
     /* Минимальная высота равна высоте экрана */
-    padding: 16px;
     box-sizing: border-box;
 
     .header {
         display: flex;
         align-items: center;
-        width: 100%;
-        max-width: 600px;
-        margin-bottom: 24px;
+        max-width: 420px;
+        width: 90%;
+        padding: 20px 0;
 
         .back-button {
             background: none;
@@ -1190,6 +1221,7 @@
             color: #333;
             cursor: pointer;
             margin-right: 8px;
+            padding: 0;
 
             &:hover {
                 color: #0057ff;
@@ -1210,7 +1242,6 @@
         width: 100%;
         max-width: 600px;
         border-radius: 16px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 24px;
         box-sizing: border-box;
 
@@ -1301,7 +1332,6 @@
 /* Адаптивные стили для телефонов */
 @media (max-width: 768px) {
     .spectacle-page {
-        padding: 12px;
 
         .header .title {
             font-size: 20px;
@@ -1325,10 +1355,9 @@
     @media (max-width: 480px) {
         .spectacle-page {
             .header {
-
                 .back-button {
                     font-size: 20px;
-                    margin-bottom: 8px;
+                    padding: 0;
                 }
 
                 .title {
@@ -1364,8 +1393,8 @@
 
     .button-circle {
         position: relative;
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         right: -80px;
 
         .text-circle {
@@ -1391,7 +1420,7 @@
             top: 50%;
             left: 100%;
             transform: translate(-50%, -50%);
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 100;
             color: #333;
         }
@@ -1399,7 +1428,7 @@
         &::before {
             content: '';
             position: absolute;
-            top: 10px;
+            top: 6px;
             left: 59%;
             width: 82%;
             height: 82%;
@@ -1420,16 +1449,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 98vh;
+    max-width: 420px;
+    min-height: 100vh;
     width: 100%;
-    padding: 16px;
+    // padding: 16px;
     background-color: #fff;
-    font-family: 'Roboto', sans-serif;
 
     .header {
         display: flex;
         align-items: center;
-        width: 100%;
+        width: 90%;
+        padding: 10px;
         margin-bottom: 24px;
 
         .back-button {
@@ -1439,6 +1469,7 @@
             color: #333;
             cursor: pointer;
             margin-right: 8px;
+            padding: 0;
 
             &:hover {
                 color: #0057ff;
@@ -1594,10 +1625,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 100vh;
-    padding: 16px;
+    max-width: 380px;
+    padding: 20px;
     background-color: #fff;
-    font-family: 'Roboto', sans-serif;
 
     .header {
         display: flex;
@@ -1612,6 +1642,7 @@
             color: #333;
             cursor: pointer;
             margin-right: 8px;
+            padding: 0;
 
             &:hover {
                 color: #0057ff;
@@ -1641,7 +1672,8 @@
 
     .content-container {
         width: 100%;
-        max-width: 600px;
+        height: 100%;
+        max-width: 420px;
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -1822,13 +1854,13 @@
 
 // VacancyForm
 .vacancy-form {
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 16px;
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 20px;
+    max-width: 380px;
+    background-color: #fff;
+    // margin: 0 auto;
 
     .vacancy-header {
         display: flex;
@@ -1841,6 +1873,7 @@
             font-size: 24px;
             cursor: pointer;
             color: #333;
+            padding: 0;
         }
 
         h1 {
@@ -1857,7 +1890,6 @@
         label {
             font-weight: bold;
             margin-bottom: 4px;
-            font-family: "Roboto", sans-serif;
         }
 
         input,
@@ -2061,4 +2093,11 @@
             }
         }
     }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    /* Ширина вертикального скроллбара */
+    height: 6px;
+    /* Высота горизонтального скроллбара */
 }
