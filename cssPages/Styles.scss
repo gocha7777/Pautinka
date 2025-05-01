@@ -13,7 +13,7 @@
 $primary-color: #0500ff;
 $secondary-color: #2a2a2a;
 $light-background: #f5f5f5;
-$dark-background: #121212;
+$dark-background: #f5f5f5;
 $highlight-color: #4c4c4c;
 
 // Mixins
@@ -52,47 +52,9 @@ body {
 }
 
 body {
-  background-color: $dark-background;
   margin: 0;
-  color: $light-background;
 }
 
-body.light {
-  background-color: $light-background;
-  color: #1a1a1a;
-}
-
-body.light .profile-card {
-  background-color: #fff;
-}
-
-body.light .links-section,
-body.light .stat-box,
-body.light .info-box,
-body.light .status-block,
-body.light .about-me,
-body.light .links,
-body.light .experience {
-  background-color: $light-background;
-  color: #1a1a1a;
-}
-
-body.light .experience-item {
-  background-color: #e3e3e3;
-}
-
-body.light .edit-btn {
-  color: #333;
-}
-
-body.light .info-box label,
-body.light .label {
-  color: #555;
-}
-
-body.light .blog-box {
-  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-}
 
 // App styles
 .app {
@@ -123,6 +85,7 @@ body.light .blog-box {
   justify-content: center;
   max-width: 420px;
   box-sizing: border-box;
+  margin: 0;
 }
 
 .profile-card {
@@ -174,7 +137,7 @@ body.light .blog-box {
   margin-top: 16px;
 
   .stat-box {
-    background-color: $secondary-color;
+    background-color: #f9f9f9;
     width: 161.13px;
     height: 62px;
     border-radius: 12px;
@@ -230,7 +193,7 @@ body.light .blog-box {
 }
 
 .info-box {
-  background-color: $secondary-color;
+  background-color: #f9f9f9;
   border-radius: 6px;
   padding: 3px 10px;
   height: 39px;
@@ -238,7 +201,6 @@ body.light .blog-box {
   flex-direction: column;
   justify-content: center;
   font-size: 14px;
-  color: white;
 
   label {
     font-size: 11px;
@@ -284,7 +246,7 @@ body.light .blog-box {
 // Links Section
 .links-section {
   position: relative;
-  background-color: $secondary-color;
+  background-color: #f9f9f9;
   padding: 14px;
   border-radius: 12px;
   @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
@@ -342,12 +304,7 @@ body.light .blog-box {
 
 // About Me Section
 .about-me {
-  position: relative;
-  grid-row: 1 / span 2;
-  background-color: $secondary-color;
-  padding: 14px;
-  border-radius: 12px;
-  // @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
+
 
   span {
     font-size: 12px;
@@ -372,7 +329,7 @@ body.light .blog-box {
 // Experience block
 .experience {
   position: relative;
-  background-color: $secondary-color;
+  background-color: #f9f9f9;
   padding: 14px;
   border-radius: 12px;
   @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
@@ -576,7 +533,7 @@ body.light .blog-box {
 .status-block {
   box-sizing: border-box;
   position: relative;
-  background-color: $secondary-color;
+  background: #f9f9f9;
   padding: 6px;
   border-radius: 8px;
   white-space: pre-wrap;
@@ -668,7 +625,7 @@ body.light .blog-box {
   .profile-container {
     width: 100%;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     border-radius: 0;
     box-shadow: none;
   }
@@ -803,18 +760,18 @@ body.light .blog-box {
   text-decoration: underline;
 }
 
-.edit-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
+// .edit-button {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   padding: 5px 10px;
+//   background-color: #007bff;
+//   border: none;
+//   color: white;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 14px;
+// }
 
 .edit-button .icon {
   font-size: 16px;
@@ -919,10 +876,10 @@ body.light .blog-box {
   }
 }
 
-.user {
-  font-size: 60px;
-  font-weight: bold;
-}
+// .user {
+//   font-size: 60px;
+//   font-weight: bold;
+// }
 
 // .tags-list-user {
 //   .tag {

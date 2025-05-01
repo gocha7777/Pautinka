@@ -14,18 +14,12 @@
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
+    background-color: #000000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
 }
 
 /* Остальные стили остаются без изменений */
-.bottom-nav.light {
-    background-color: #000000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.bottom-nav.dark {
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
 .nav-item {
     display: flex;

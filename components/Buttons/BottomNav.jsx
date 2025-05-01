@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaEnvelope, FaUsers, FaPen, FaUser } from 'react-icons/fa';
-import { useTheme } from '../../context/ThemeContext';
 import '../../cssPages/BottomNav.css';
 
 const BottomNav = () => {
-    const { theme } = useTheme();
     const [hidden, setHidden] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
@@ -25,7 +22,7 @@ const BottomNav = () => {
     }, [lastScrollY]);
 
     return (
-        <div className={`bottom-nav ${theme} ${hidden ? 'hidden' : ''}`}>
+        <div className={`bottom-nav ${hidden ? 'hidden' : ''}`}>
             <NavLink to="/messages" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
                 <img src='foto/nav/card.png' className="icon" />
             </NavLink>

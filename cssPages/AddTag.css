@@ -268,7 +268,7 @@
 .available-tags-list::-webkit-scrollbar-thumb:hover {
     background-color: #777;
 }
-
+/* 
 body.dark .tags-block, body.dark .available-tags-list , body.dark .search-tag-input, body.dark .description-input {
     background-color: #2a2a2a;
     color: #fff;
@@ -285,4 +285,4 @@ body.dark .available-tag{
 body.light .available-tag{
     background-color: #ffffff;
     color: black;
-}
+} */

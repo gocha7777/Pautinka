@@ -12,14 +12,3 @@
     height: 100vh;
     margin: 10px;
 }
-
-.light .blog-coming-soon {
-    background-color: #ffffff;
-
-    color: #000000;
-}
-
-.dark .blog-coming-soon {
-    background-color: #121212;
-    color: #fff;
-}

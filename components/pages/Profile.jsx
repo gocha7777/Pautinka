@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../../cssPages/Styles.scss';
 
-import { useTheme } from '../../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import AvatarSection from '../Profile/AvatarSection';
@@ -19,10 +18,6 @@ const Profile = () => {
     // const { theme, setTheme } = useTheme();
     const navigate = useNavigate();
     const { profileData } = useProfile();
-
-    // const toggleTheme = () => {
-    //     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-    // };
 
     return (
         <div className={`profile-container`}>
