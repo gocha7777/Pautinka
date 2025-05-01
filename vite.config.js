@@ -10,4 +10,13 @@ export default defineConfig({
       external: ['framer-motion'], // Явно указываем зависимость как внешнюю
     },
   },
+  scss: {
+    // Additional options if needed
+    additionalData: `@import "./cssPages/Posts.scss";`, // Example: Import global SCSS variables
+  }, server: {
+    allowedHosts: [
+      'localhost', // Разрешаем localhost
+      'bcdb-77-238-245-33.ngrok-free.app', // Добавляем домен ngrok
+    ],
+  },
 })
