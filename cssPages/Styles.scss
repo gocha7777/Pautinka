@@ -16,6 +16,19 @@ $light-background: #f5f5f5;
 $dark-background: #f5f5f5;
 $highlight-color: #4c4c4c;
 
+/* Для всех браузеров */
+body {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
+}
+
 // Mixins
 @mixin box-shadow($color, $blur) {
   box-shadow: 0 0 $blur $color;
@@ -89,7 +102,7 @@ body {
 }
 
 .profile-card {
-  background-color: $secondary-color;
+  background-color: #ffffff;
   border-radius: 16px;
   padding: 20px;
   width: 100%;
@@ -98,6 +111,7 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -137,7 +151,7 @@ body {
   margin-top: 16px;
 
   .stat-box {
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
     width: 161.13px;
     height: 62px;
     border-radius: 12px;
@@ -193,7 +207,7 @@ body {
 }
 
 .info-box {
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   border-radius: 6px;
   padding: 3px 10px;
   height: 39px;
@@ -246,7 +260,7 @@ body {
 // Links Section
 .links-section {
   position: relative;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   padding: 14px;
   border-radius: 12px;
   @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
@@ -329,7 +343,7 @@ body {
 // Experience block
 .experience {
   position: relative;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   padding: 14px;
   border-radius: 12px;
   @include box-shadow(rgba(0, 0, 0, 0.2), 10px);
@@ -411,7 +425,7 @@ body {
   margin-top: 16px;
   display: flex;
   justify-content: center;
-
+  width: 100%;
   .moderation-button {
     width: 379px;
     height: 43px;
@@ -533,7 +547,7 @@ body {
 .status-block {
   box-sizing: border-box;
   position: relative;
-  background: #f9f9f9;
+  background: #f5f5f5;
   padding: 6px;
   border-radius: 8px;
   white-space: pre-wrap;
@@ -676,7 +690,7 @@ body {
 
   .status-block {
     border-radius: 8px;
-    background: #f9f9f9;
+    background: #f5f5f5;
   }
 
   .profile-sections-layout {
@@ -733,7 +747,7 @@ body {
   max-width: 500px;
   padding: 15px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   position: relative;
   white-space: pre-wrap;
   /* Сохраняем переносы строк */
@@ -826,7 +840,7 @@ body {
   .experience-card {
     flex: 0 0 auto; // Фиксированная ширина карточек
     width: 220px; // Размер карточки
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../cssPages/Styles.scss';
-
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import AvatarSection from '../Profile/AvatarSection';
@@ -12,18 +11,26 @@ import AboutMe from '../Profile/AboutMe';
 import LinksSection from '../Profile/LinksSection';
 import ExperienceSection from '../Profile/ExperienceSection';
 import InfoField from '../Profile/InfoField';
+import ProfileService from '../../api/Services/ProfileService';
 
 const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
-    // const { theme, setTheme } = useTheme();
+    const [profile, setProfile] = useState();
     const navigate = useNavigate();
     const { profileData } = useProfile();
+
+    useEffect(() => {
+        ProfileService.getProfile().then((data) => {
+            console.log("Что пришло:", data); // <- важно
+            setProfile(data);
+        });
+    }, []);
 
     return (
         <div className={`profile-container`}>
             <div className="profile-card">
 
-                <AvatarSection avatarUrl="foto\foto-profile.png" />
+                <AvatarSection avatarUrl="foto\foto-profile.png" name={profile?.name} />
 
                 <button className="toggle-edit" onClick={() => setIsEditing(!isEditing)}>
                     {isEditing ? 'Сохранить' : 'Редактировать профиль'}
