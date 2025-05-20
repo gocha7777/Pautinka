@@ -1,6 +1,10 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/pautinka/', // Указываем префикс для деплоя на GitHub Pages
+  base: '/pautinka/',
   build: {
     rollupOptions: {
       external: ['framer-motion'], // Явно указываем зависимость как внешнюю
@@ -15,4 +19,4 @@ export default defineConfig({
       'bcdb-77-238-245-33.ngrok-free.app', // Добавляем домен ngrok
     ],
   },
-})
+});
