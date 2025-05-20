@@ -34,7 +34,7 @@ import UserLinksPage from '../components/User/UserLinksPage';
 const App = () => {
   return (
     <ProfileProvider>
-      <Router>
+      <Router basename="/Pautinka">
         <div className="app">
           <div className="content">
             <Routes>
