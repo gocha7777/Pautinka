@@ -1,30 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProfile } from '../../context/ProfileContext';
 import AvatarSection from '../Profile/AvatarSection';
-import '../../cssPages/EditPages.scss'; // Обновленные стили
+import TELEGRAM_ID from '../../api/telegramId';
+import ProfileService from '../../api/Services/ProfileService';
+import '../../cssPages/EditPages.scss';
+import { API_BASE_URL } from '../../api/config';
 
 const EditExperienceNew = () => {
-    const { profileData, setProfileData } = useProfile();
     const navigate = useNavigate();
-
+    const [profile, setProfile] = useState(null);
     const [newExperience, setNewExperience] = useState({
         company: '',
         department: '',
-        position: '',
-        duration: '',
-        logo: '',
+        role: '',
+        workDurationYears: '',
+        logoUrl: ''
     });
 
-    const handleSave = () => {
-        setProfileData((prevData) => ({
-            ...prevData,
-            experience: [
-                ...prevData.experience,
-                { ...newExperience, id: Date.now() },
-            ],
-        }));
-        navigate('/profile/edit-experience'); // Возврат к списку опыта работы
+    useEffect(() => {
+        const fetchProfile = async () => {
+            const data = await ProfileService.getProfileByTelegramId(TELEGRAM_ID);
+            setProfile(data);
+        };
+        fetchProfile();
+    }, []);
+
+    const getAvatarUrl = () => {
+        const draftPhoto = JSON.parse(localStorage.getItem(`pendingProfile_${TELEGRAM_ID}`))?.photo;
+        const serverPhoto = profile?.photo;
+        const resolved = draftPhoto ?? serverPhoto;
+        return resolved
+            ? resolved.startsWith('/')
+                ? `${API_BASE_URL}${resolved}`
+                : resolved
+            : 'foto/foto-profile.png';
+    };
+
+    const handleAddLocally = () => {
+        if (!newExperience.company || !newExperience.role || !newExperience.department) {
+            alert('Пожалуйста, заполните все поля.');
+            return;
+        }
+
+        const storageKey = `pendingProfile_${TELEGRAM_ID}`;
+        const existing = JSON.parse(localStorage.getItem(storageKey)) || {};
+
+        const updated = {
+            ...profile,
+            ...existing,
+            experiences: [...(existing.experiences || []), newExperience]
+        };
+
+        localStorage.setItem(storageKey, JSON.stringify(updated));
+        alert('Опыт работы сохранён локально');
+        navigate('/profile/edit-experience');
     };
 
     const handleLogoUpload = (e) => {
@@ -32,7 +61,7 @@ const EditExperienceNew = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = (event) => {
-                setNewExperience({ ...newExperience, logo: event.target.result });
+                setNewExperience({ ...newExperience, logoUrl: event.target.result });
             };
             reader.readAsDataURL(file);
         }
@@ -45,11 +74,10 @@ const EditExperienceNew = () => {
                     <h3> ← Редактирование профиля</h3>
                 </button>
                 <AvatarSection
-                    avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png"
-                    name={profileData.name}
+                    avatarUrl={getAvatarUrl()}
+                    name={profile?.firstName || ''}
                 />
                 <h3 className="section-title">Опыт работы</h3>
-
                 <div className="form-container">
                     <div className="form-row name-company">
                         <div className="name-input">
@@ -58,19 +86,13 @@ const EditExperienceNew = () => {
                                 type="text"
                                 className="form-input"
                                 value={newExperience.company}
-                                onChange={(e) =>
-                                    setNewExperience({ ...newExperience, company: e.target.value })
-                                }
+                                onChange={(e) => setNewExperience({ ...newExperience, company: e.target.value })}
                             />
                         </div>
                         <div className="logo-button-container">
                             <label className="add-logo-button">
                                 Добавить логотип
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleLogoUpload}
-                                />
+                                <input type="file" accept="image/*" onChange={handleLogoUpload} />
                             </label>
                         </div>
                     </div>
@@ -80,9 +102,7 @@ const EditExperienceNew = () => {
                             type="text"
                             className="form-input"
                             value={newExperience.department}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, department: e.target.value })
-                            }
+                            onChange={(e) => setNewExperience({ ...newExperience, department: e.target.value })}
                         />
                     </div>
                     <div className="form-row">
@@ -90,10 +110,8 @@ const EditExperienceNew = () => {
                         <input
                             type="text"
                             className="form-input"
-                            value={newExperience.position}
-                            onChange={(e) =>
-                                setNewExperience({ ...newExperience, position: e.target.value })
-                            }
+                            value={newExperience.role}
+                            onChange={(e) => setNewExperience({ ...newExperience, role: e.target.value })}
                         />
                     </div>
                     <div className="form-row">
@@ -101,16 +119,15 @@ const EditExperienceNew = () => {
                         <input
                             type="text"
                             className="form-input"
-                            value={newExperience.duration}
+                            value={newExperience.workDurationYears}
                             onChange={(e) =>
-                                setNewExperience({ ...newExperience, duration: e.target.value })
+                                setNewExperience({ ...newExperience, workDurationYears: e.target.value })
                             }
                         />
                     </div>
                 </div>
-
-                <button onClick={handleSave} className="save-btn">
-                    Сохранить
+                <button onClick={handleAddLocally} className="save-btn">
+                    Сохранить локально
                 </button>
             </div>
         </div>

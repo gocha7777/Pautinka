@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FaPen } from 'react-icons/fa';
+import { FaPen, FaExclamationCircle } from 'react-icons/fa';
+import { getDraftProfile } from '../../context/draftStorage';
 
 const AboutMe = ({ description, isEditing, onEditAboutMe }) => {
-    // Обработка текста: сохранение исходного форматирования
+    const draft = getDraftProfile();
+    const hasDraft = draft && draft.hasOwnProperty('description');
+
     const renderDescription = (text) => {
         return text.split('\n').map((line, index) => {
-            // Если строка содержит ссылку, делаем её кликабельной
             if (line.trim().startsWith('http')) {
                 return (
                     <p key={index}>
@@ -16,11 +16,9 @@ const AboutMe = ({ description, isEditing, onEditAboutMe }) => {
                     </p>
                 );
             }
-            // Если строка пустая, возвращаем пустой параграф для сохранения отступов
             if (line.trim() === '') {
                 return <p key={index}>&nbsp;</p>;
             }
-            // Для обычного текста возвращаем параграф
             return <p key={index}>{line}</p>;
         });
     };
@@ -32,20 +30,23 @@ const AboutMe = ({ description, isEditing, onEditAboutMe }) => {
                     <FaPen className="icon" />
                 </button>
             )}
-            <strong className="about-me-title">Обо мне</strong>
-            <div className="description">{renderDescription(description)}</div>
+            <strong className="about-me-title">
+                Обо мне{' '}
+                {hasDraft && (
+                    <FaExclamationCircle
+                        title="Это черновик, ожидающий модерации"
+                        style={{ color: '#e69900', marginLeft: 4 }}
+                    />
+                )}
+            </strong>
+            <div className="description">
+                {description && description.trim() !== ''
+                    ? renderDescription(description)
+                    : <span className="about-placeholder">Расскажите о себе: образование, опыт, интересы, достижения...</span>
+                }
+            </div>
         </div>
     );
-};
-
-AboutMe.propTypes = {
-    description: PropTypes.string.isRequired,
-    isEditing: PropTypes.bool,
-    onEditAboutMe: PropTypes.func.isRequired,
-};
-
-AboutMe.defaultProps = {
-    isEditing: false,
 };
 
 export default AboutMe;

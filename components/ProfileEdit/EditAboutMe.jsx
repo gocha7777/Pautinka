@@ -1,83 +1,77 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AvatarSection from '../Profile/AvatarSection';
-import { useProfile } from '../../context/ProfileContext';
-import useProfileEditor from '../../hooks/useProfileEditor';
 import { CommonButton } from '../Buttons/ActionButtons';
 import '../../cssPages/EditPages.scss';
+import { saveDraftProfile } from '../../context/draftStorage';
+import TELEGRAM_ID from '../../api/telegramId';
+import { API_BASE_URL } from '../../api/config';
 
 const EditAboutMe = () => {
-    const { profileData, setProfileData } = useProfile();
-    const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const {
-        state: { name, description },
-        hasChanges,
-        handleInputChange,
-        handleSave,
-        handleCancel,
-    } = useProfileEditor(
-        { name: profileData.name, description: profileData.description },
-        (updatedState) => {
-            setProfileData((prevData) => ({
-                ...prevData,
-                ...updatedState,
-            }));
-        }
+    const profile = location.state?.profile;
+    const refreshProfile = location.state?.refreshProfile;
+
+    const [description, setDescription] = useState(
+        profile?.description || ''
     );
 
-    const toggleEditMode = () => {
-        if (isEditing) {
-            handleCancel(); // Revert changes when toggling off
-        }
-        setIsEditing(!isEditing); // Toggle edit mode
+    const getAvatarUrl = () => {
+        const draftPhoto = JSON.parse(localStorage.getItem(`pendingProfile_${TELEGRAM_ID}`))?.photo;
+        const serverPhoto = profile?.photo;
+        const resolved = draftPhoto ?? serverPhoto;
+        return resolved
+            ? resolved.startsWith('/')
+                ? `${API_BASE_URL}${resolved}`
+                : resolved
+            : 'foto/foto-profile.png';
     };
 
-    const saveChanges = () => {
-        handleSave();
-        setIsEditing(false); // Exit edit mode after saving
+    const saveLocally = () => {
+        saveDraftProfile('description', description); // сохраняем как черновик
+
+        if (refreshProfile) {
+            refreshProfile((prev) => ({
+                ...prev,
+                description,
+            }));
+        }
+
+        navigate('/');
     };
 
     return (
         <div className="about-container">
             <div className="about-card">
-                <button onClick={() => window.history.back()} className="back-to-profile-button">
+                <button onClick={() => navigate(-1)} className="back-to-profile-button">
                     <h3> ← Редактирование профиля</h3>
                 </button>
 
-                <AvatarSection avatarUrl="https://cdn-icons-png.flaticon.com/512/2734/2734847.png" name={name} />
+                <AvatarSection
+                    avatarUrl={getAvatarUrl()}
+                    name={profile?.firstName}
+                />
 
                 <div className="about-block">
                     <div className="about-header">
                         <span className="about-title">Обо мне</span>
-                        <button
-                            className="about-edit-toggle"
-                            onClick={toggleEditMode}
-                            title={isEditing ? 'Отменить' : 'Редактировать'}
-                        >
-                            {isEditing ? '✕' : '✎'}
-                        </button>
                     </div>
-
-                    {isEditing ? (
-                        <textarea
-                            name="description"
-                            value={description}
-                            onChange={handleInputChange}
-                            className={`about-description ${isEditing ? 'editing' : ''}`}
-                            placeholder="Расскажите о себе"
-                            readOnly={!isEditing} // Disable input unless in edit mode
-                        />
-                    ) : (
-                        <div className="about-description">{description}</div>
-                    )}
+                    <textarea
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="about-description editing"
+                        placeholder="Расскажите о себе"
+                    />
                 </div>
-                {hasChanges && (
-                    <div className="button-group">
-                        <CommonButton onClick={saveChanges} className="save-button">
-                            Сохранить
-                        </CommonButton>
-                    </div>
-                )}
+
+                <div className="button-group">
+                    <CommonButton onClick={saveLocally} className="save-button">
+                        Сохранить
+                    </CommonButton>
+                </div>
             </div>
         </div>
     );

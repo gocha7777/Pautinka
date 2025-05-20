@@ -3,7 +3,8 @@ import React, { createContext, useContext, useState } from 'react';
 const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
-    const [profileData, setProfileData] = useState({
+    const [profileData, _setProfileData] = useState({
+        telegramId: 7910426062,
         name: 'Egorova Elizaveta',
         description: 'Руководитель направления обучения в СБЕР «Деловая среда». Карьерный консультант, психолог. Спикер в EdTech HRTech. Найти работу можно тут: https://set.ki/community /kco4mJW Автор тг-канала «Поединок с HRom»: https: //t.me/hrforfight ИИ-энтузиаст, основатель бизнес-клуба Team Al и Al- акселератора. Cofounder "Enigma" - онлайн-курсы по ИИ для сотрудников и руководителей.  https://aienigma.ru',
         descriptionuser: `Руководитель направления обучения в СБЕР «Деловая среда».
@@ -49,6 +50,18 @@ export const ProfileProvider = ({ children }) => {
         statusShort: 'провожу кейс чемпионаты',
         statusLong: ['Карьерные треки для соискателей', 'HR-консалтинг для компаний'],
     });
+
+    // Обёртка, чтобы telegramId всегда был 7910426062
+    const setProfileData = (dataOrUpdater) => {
+        if (typeof dataOrUpdater === 'function') {
+            _setProfileData(prev => {
+                const updated = dataOrUpdater(prev);
+                return { ...updated, telegramId: 7910426062 };
+            });
+        } else {
+            _setProfileData({ ...dataOrUpdater, telegramId: 7910426062 });
+        }
+    };
 
     return (
         <ProfileContext.Provider value={{ profileData, setProfileData }}>

@@ -1,165 +1,123 @@
 import React, { useState } from 'react';
-import '../../cssPages/Posts.scss';
-import { useProfile } from '../../context/ProfileContext';
-import useProfileEditor from '../../hooks/useProfileEditor';
+import AddProjectTags from './AddProjectTags';
+import { useNavigate } from 'react-router-dom';
+
 const VacancyForm = () => {
-    const [selectedLevel, setSelectedLevel] = useState('');
-    const { profileData, setProfileData } = useProfile();
-    const [selectedExperience, setSelectedExperience] = useState('');
+    const [title, setTitle] = useState('');
+    const [level, setLevel] = useState('');
+    const [experience, setExperience] = useState('');
+    const [tasks, setTasks] = useState('');
+    const [requirements, setRequirements] = useState('');
+    const [conditions, setConditions] = useState('');
+    const [tags, setTags] = useState([]);
+    const navigate = useNavigate();
 
-    const {
-        state: { tags },
-        handleInputChange,
-    } = useProfileEditor(
-        { tags: profileData.tags || [] },
-        (updatedState) => {
-            setProfileData((prevData) => ({
-                ...prevData,
-                tags: updatedState.tags,
-            }));
+    const isValid = title.trim() && tags.length > 0 && (tasks.trim() || requirements.trim() || conditions.trim());
+
+    const handleSave = () => {
+        if (!isValid) {
+            alert("Заполните название, добавьте теги и хотя бы одно описание");
+            return;
         }
-    );
 
-    const availableTags = profileData?.availableTags || [];
-    const unselectedTags = availableTags.filter((tag) => !tags.includes(tag));
+        const newVacancy = {
+            title,
+            level,
+            experience,
+            tags,
+            tasks,
+            requirements,
+            conditions,
+        };
+
+        const existingVacancies = JSON.parse(localStorage.getItem('pendingVacancies')) || [];
+        existingVacancies.push(newVacancy); // ✅ добавляем, а не заменяем
+        localStorage.setItem('pendingVacancies', JSON.stringify(existingVacancies));
+
+        navigate(-1); // возвращение назад на страницу создания проекта
+    };
 
     return (
         <div className="vacancy-form">
-            <header className="vacancy-header" onClick={() => window.history.back()}>
-                <button className="back-button">←</button>
-                <h1>Вакансии</h1>
+            <header className="vacancy-header">
+                <button className="back-button" onClick={() => navigate(-1)}>←</button>
+                <h1>Новая вакансия</h1>
             </header>
 
-            {/* Job Title */}
             <div className="form-group">
                 <label>Название вакансии</label>
-                <input type="text" placeholder="Project manager" />
+                <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Project manager"
+                />
             </div>
 
-            {/* Levels and Experience */}
             <div className="levels-experience">
                 <div className="levels">
                     <label>
                         Добавить уровень
                         <div className="toggle-switch">
-                            <input type="checkbox" id="toggle-level" />
+                            <input type="checkbox" id="toggle-level" checked={!!level} readOnly />
                             <label htmlFor="toggle-level" />
                         </div>
                     </label>
                     <div className="options">
-                        {['Intern', 'Junior', 'Middle', 'Senior', 'Team lead'].map((level) => (
+                        {['Intern', 'Junior', 'Middle', 'Senior', 'Team lead'].map((l) => (
                             <button
-                                key={level}
-                                className={`option ${selectedLevel === level ? 'active' : ''}`}
-                                onClick={() => setSelectedLevel(level)}
+                                key={l}
+                                className={`option ${level === l ? 'active' : ''}`}
+                                onClick={() => setLevel(l)}
                             >
-                                {level}
+                                {l}
                             </button>
                         ))}
                     </div>
                 </div>
+
                 <div className="experience">
                     <label>
                         Опыт работы
                         <div className="toggle-switch">
-                            <input type="checkbox" id="toggle-experience" />
+                            <input type="checkbox" id="toggle-experience" checked={!!experience} readOnly />
                             <label htmlFor="toggle-experience" />
                         </div>
                     </label>
                     <div className="options">
-                        {['Без опыта', '0-1 год', '1-3 года', '3-5 лет', '5-7 лет', 'более 7 лет'].map(
-                            (experience) => (
-                                <button
-                                    key={experience}
-                                    className={`option ${selectedExperience === experience ? 'active' : ''
-                                        }`}
-                                    onClick={() => setSelectedExperience(experience)}
-                                >
-                                    {experience}
-                                </button>
-                            )
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {/* Tags */}
-            <div className="tags-block-container">
-                <label className="label">Добавить метку проекта</label>
-                <div className="tags-list">
-                    {tags.map((tag, index) => (
-                        <div key={index} className="tag">
-                            <span>{tag}</span>
+                        {['Без опыта', '0-1 год', '1-3 года', '3-5 лет', 'более 7 лет'].map((e) => (
                             <button
-                                onClick={() =>
-                                    handleInputChange({
-                                        target: {
-                                            name: 'tags',
-                                            value: tags.filter((t) => t !== tag),
-                                        },
-                                    })
-                                }
-                                className="remove-tag"
+                                key={e}
+                                className={`option ${experience === e ? 'active' : ''}`}
+                                onClick={() => setExperience(e)}
                             >
-                                ✕
+                                {e}
                             </button>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="search-block">
-                    <div className="search-bar">
-                        <input
-                            type="text"
-                            name="search"
-                            placeholder="Начните вводить метку"
-                            onChange={handleInputChange}
-                            className="search-tag-input"
-                        />
-                        <button className="search-icon">
-                            <span role="img" aria-label="search">
-                                🔍
-                            </span>
-                        </button>
-                    </div>
-                    <div className="available-tags-list">
-                        {unselectedTags.map((tag, index) => (
-                            <div
-                                key={index}
-                                className="available-tag"
-                                onClick={() =>
-                                    handleInputChange({
-                                        target: {
-                                            name: 'tags',
-                                            value: [...tags, tag],
-                                        },
-                                    })
-                                }
-                            >
-                                {tag}
-                            </div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* Tasks, Requirements, and Conditions */}
+            <div className="form-group">
+                <label>Добавить метку проекта</label>
+                <AddProjectTags tags={tags} setTags={setTags} />
+            </div>
+
             <div className="form-group">
                 <label>Задачи</label>
-                <textarea placeholder="Начните вводить описание ..." />
+                <textarea placeholder="Начните вводить описание ..." value={tasks} onChange={(e) => setTasks(e.target.value)} />
             </div>
             <div className="form-group">
                 <label>Требования</label>
-                <textarea placeholder="Начните вводить описание ..." />
+                <textarea placeholder="Начните вводить описание ..." value={requirements} onChange={(e) => setRequirements(e.target.value)} />
             </div>
             <div className="form-group">
                 <label>Предлагаемые условия</label>
-                <textarea placeholder="Начните вводить описание ..." />
+                <textarea placeholder="Начните вводить описание ..." value={conditions} onChange={(e) => setConditions(e.target.value)} />
             </div>
 
-            {/* Submit Button */}
             <div className="submit-container">
-                <button className="submit-button">Опубликовать вакансию</button>
+                <button className="submit-button" onClick={handleSave}>Опубликовать вакансию</button>
             </div>
         </div>
     );

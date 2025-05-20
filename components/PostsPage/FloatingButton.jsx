@@ -14,7 +14,7 @@ const FloatingButton = () => {
                     />
                     <text>
                         <textPath href="#circlePath">
-                            Управление проектами Управление проектами
+                            Управление проектами
                         </textPath>
                     </text>
                 </svg>

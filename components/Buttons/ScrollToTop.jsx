@@ -1,14 +1,12 @@
 import React, { useRef, useState } from 'react';
-import TagsList from '../Profile/TagsList';
-import { useProfile } from '../../context/ProfileContext';
 import '../../cssPages/Posts.scss';
-import TeamList from '../PostsPage/TeamList';
 import JobButton from '../PostsPage/JobButton';
+import TagsPost from '../PostsPage/TagsPost';
+import ParticipantCard from '../PostsPage/ParticipantCard';
 
 const ScrollToTop = ({ project, onExpandChange }) => {
     const panelRef = useRef(null);
     const [isExpanded, setIsExpanded] = useState(false);
-    const { profileData } = useProfile();
     const touchStartY = useRef(0);
     const touchEndY = useRef(0);
 
@@ -23,38 +21,62 @@ const ScrollToTop = ({ project, onExpandChange }) => {
     const handleTouchEnd = () => {
         const diffY = touchStartY.current - touchEndY.current;
 
+        if (Math.abs(diffY) < 30) return;
+
         if (diffY > 50 && !isExpanded) {
-            // Если тянем вверх и окно закрыто
             setIsExpanded(true);
             onExpandChange(true);
-        } else if (diffY < -50 && isExpanded) {
-            // Если тянем вниз и окно открыто
+        } else if (diffY < -100 && isExpanded) {
             setIsExpanded(false);
             onExpandChange(false);
         }
     };
+    console.log(project.participants);
 
     return (
         <div
             ref={panelRef}
             className={`info-slide-panel ${isExpanded ? 'expanded' : 'collapsed'}`}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
         >
-            <div className="drag-bar" />
+            {/* 👉 swipe-header — только зона для свайпа */}
+            <div
+                className="swipe-header"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
+                <div className="drag-bar" />
 
-            <div className="content-modal">
                 {isExpanded ? (
-                    <div className="modal-inner-scrollable">
-                        <div className="sticky-header">
-                            <div className="post-content-horizontal">
-                                <h1>{project.title}</h1>
-                                <TagsList tags={profileData.tags} />
-                            </div>
-                        </div>
+                    <div className="post-content-horizontal">
+                        <h1>{project.name}</h1>
+                        <TagsPost tags={project.tags?.map(t => t.tagName)} />
+                    </div>
+                ) : (
+                    <div className="description-text">{project?.description}</div>
+                )}
+            </div>
 
-                        <TeamList />
+            {/* Контент при открытии */}
+            {isExpanded && (
+                <div className="content-modal">
+                    <div className="modal-inner-scrollable">
+                        <div className="section">
+                            <h3>Участники</h3>
+                            {project.participants?.length > 0 ? (
+                                <div className="participants-grid">
+                                    {project.participants.map((p, idx) => (
+                                        <ParticipantCard
+                                            key={`participant-${p.id ?? ''}-${p.telegramId ?? ''}-${idx}`}
+                                            name={p.name}
+                                            avatarUrl={p.photo || 'foto/foto-profile.png'}
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                <p>Участников нет</p>
+                            )}
+                        </div>
 
                         <div className="section">
                             <h3>Подробное описание</h3>
@@ -63,19 +85,23 @@ const ScrollToTop = ({ project, onExpandChange }) => {
 
                         <div className="section">
                             <h3>Вакансии</h3>
-                            <JobButton title="Senior Software Engineer" subtitle="2 years ago" />
-                            <JobButton title="UI/UX Designer" subtitle="6 months ago" />
-                            <JobButton title="Data Scientist" subtitle="1 year ago" />
-                            <JobButton title="Digital Marketing Specialist" subtitle="3 months ago" />
-                            <JobButton title="DevOps Engineer" subtitle="4 years ago" />
+                            {project.vacancies?.length > 0 ? (
+                                project.vacancies.map((vac, idx) => (
+                                    <JobButton
+                                        key={idx}
+                                        title={vac.title}
+                                        subtitle={vac.level || 'Уровень не указан'}
+                                        vacancy={vac}
+                                        projectId={project.id}
+                                    />
+                                ))
+                            ) : (
+                                <p>Нет вакансий</p>
+                            )}
                         </div>
                     </div>
-                ) : (
-                    <div className={`modal-content-wrapper ${!isExpanded ? 'collapsed' : 'expanded'}`}>
-                        <div className="description-text">{project?.description}</div>
-                    </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 };
